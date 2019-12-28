@@ -48,7 +48,27 @@ openany,							% Kapitel können auch auf linken Seiten beginnen
 %% ==> Installieren Sie die cm-super Fonts (z.B. mit dem mikTeX Package Manager).
 %% Eine nicht ganz vollwertige Alternative ist die Verwendung dieses Pakets:
 %\usepackage{ae, aeguill}
-
+%% Bibliographiestil %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+	backend = biber
+	, natbib	= true
+	, bibwarn = true
+	, backref = true
+	, bibencoding = utf8
+	, style = alphabetic
+	%, sortlocale = de_DE
+	, maxbibnames = 99
+	, date = long
+	, abbreviate = false
+	%, language = ngerman
+	%, refsection = section % benutze automatisch Kapitel als Biobliographie-Abschnitte...
+	%sorting = ynt
+%   %isbn	= true,		%default ist true
+%   %url	= true,		%default ist true
+%   %doi	= true,		%default ist true
+]{biblatex}
+\addbibresource{Literatur.bib}
+\usepackage{csquotes}
 
 %% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx} %%Zum Laden von Grafiken
@@ -157,7 +177,10 @@ Viel Spaß! Für Rückfragen, die diese Vorlage betreffen, stehe ich Ihnen gern 
 %\setbibpreamble{Präambel}		% Text vor dem Verzeichnis
 %\bibliographystyle{dinat}
 %\bibliography{bibliographie}	% Sie benötigen einen *.bib-Datei
-
+%% Bibliographie%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setbibpreamble{Präambel}		% Text vor dem Verzeichnis
+\nocite{*}
+\printbibliography
 
 
 \end{document}
