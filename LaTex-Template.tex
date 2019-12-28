@@ -16,6 +16,7 @@
 %											  s. scrguide 2.4
 %oneside,							% einseitiges Layout
 %twocolumn,						% zweispaltiger Satz
+%twoside
 openany,							% Kapitel können auch auf linken Seiten beginnen
 %halfparskip*,				% Absatzformatierung s. scrguide 3.1
 %headsepline,					% Trennline zum Seitenkopf	
@@ -72,7 +73,6 @@ toc=chapterentrywithdots
 %\usepackage{natbib}
 
 \begin{document}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Ihr Buch                                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -103,14 +103,14 @@ toc=chapterentrywithdots
 
 \maketitle 						% Titelei wird erzeugt
 
+\pagenumbering{Roman}
 %% Erzeugung von Verzeichnissen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \tableofcontents			% Inhaltsverzeichnis
-%\listoftables				% Tabellenverzeichnis
-%\listoffigures				% Abbildungsverzeichnis
 
 
 %% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \frontmatter					% Vorspann (z.B. römische Seitenzahlen)
+\pagenumbering{arabic}
 \chapter{Einleitung}
 
 Bei der Book-Klasse des KOMA-Script wird durch den Gliederungsbefehl \verb#\frontmatter# automatisch auf römische Seitennummerierung gewechselt und die Nummerierung der Kapitel unterdrückt. In der Regel sollte der Vorspann nur aus einem Kapitel -- dem Vorwort -- bestehen.
@@ -147,6 +147,7 @@ Für ein einleitendes Zitat, ein sog. Diktum bietet das KOMA-Script die Anweisun
 
 \appendix							% Beginn des Anhangs
 \addchap{Anhang}
+\pagenumbering{gobble}
 \chapter{Schluss}
 
 Für den Schluss ist zu überlegen, wie man den Anhang formatiert haben möchte: Das KOMA-Script kennt den Befehl \verb#\backmatter#. Hierdurch wird die Nummerierung der Gliederungseinheiten im Text und im Inhaltsverzeichnis unterdrückt. Erwartet man die übliche Beschriftung mit "`Anhang A"' bzw. "`A."' so verwendet man den Befehl \verb#\appendix# und verzichte auf \verb#\backmatter# oder setze es zu einem späteren Punkt ein.
@@ -159,7 +160,5 @@ Viel Spaß! Für Rückfragen, die diese Vorlage betreffen, stehe ich Ihnen gern 
 %\setbibpreamble{Präambel}		% Text vor dem Verzeichnis
 %\bibliographystyle{dinat}
 %\bibliography{bibliographie}	% Sie benötigen einen *.bib-Datei
-
-
 
 \end{document}
