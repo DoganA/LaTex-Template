@@ -51,6 +51,10 @@ toc=chapterentrywithdots
 %% Eine nicht ganz vollwertige Alternative ist die Verwendung dieses Pakets:
 %\usepackage{ae, aeguill}
 
+%% caption Anpassungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{caption}
+\DeclareCaptionLabelFormat{underline}{\underline{#1~#2:}}
+\captionsetup{labelformat=underline,format=hang, labelsep=space,labelfont=bf, position=top}
 
 %% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx} %%Zum Laden von Grafiken
@@ -129,7 +133,33 @@ In den report- und book-Klassen steht, im Vergleich zu den article-Klassen als z
 
 Kapitel beginnen in der Regel in Büchern auf einer ungeraden, d.\,h. rechten Seite. Will man fortlaufenden Textsatz erreichen und also den Beginn auch auf linken Seiten zulassen, verwendet man die Option \verb#openany# gleich in der Dokumenten-Präambel. Hier finden sich auch andere Optionen zur Regelung der Überschriftengröße und deren Beschriftung.
 
+\chapter{Verzeichnisse}
+\label{sec:Verzeichnisse}
+\section{Tabellenabschnitt}
+\label{sec:Tabellenabschnitt}
 
+\begin{table}[h!]
+	\caption{Überschrift 1}
+	\caption{Überschrift 2}
+	\caption{Überschrift 3}
+	\caption{Überschrift 4}
+	\caption{Dies ist nur eine Beispieltabelle, bei dem der Caption über mehrere Zeilen geht und Captionbeschriftung anderer Tabellen beinhaltet. Überschrift 1 Überschrift 2 Überschrift 3 Überschrift 4}
+	\centering
+	\begin{tabular}{|l|l|l|l|}\hline
+		Dies & ist & ein & Beispiel.\\\hline
+		Bitte & lassen & Sie & den \\\hline
+		Inhalt & dieser & Tabelle & unbeachtet.\\\hline
+	\end{tabular}
+\end{table}
+	\section{Abbildungsabschnit}
+	\label{sec:Abbildungsabschnit}
+
+	\begin{figure}[htbp]
+		\caption{Abbildung1}
+		\caption{Abbildung2}
+		\caption{Abbildung3}
+		\caption{Abbildung4}
+	\end{figure}
 \chapter{Präambeln}
 
 Durch den Befehl \verb#\setpartpreamble[Position][Breite]{Präambel}# wird zusammen mit der Angabe des Teils (part) zudem der angegebene Text gesetzt. Dies kann z.\,B. eine kurze Inhaltsangabe sein. Ein Beipiel ist unter Hauptteil zu sehen.  Die Präambel wird in eine Box gesetzt, deren Position und Breite angegeben werden kann. Unterbleibt dies, wird sie unterhalb der Überschriften im normalen Blocksatz über den gesamten Textbereich gesetzt.
