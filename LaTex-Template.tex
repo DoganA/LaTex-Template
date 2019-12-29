@@ -1,44 +1,34 @@
-%% Basierend auf einer TeXnicCenter-Vorlage von Mark Müller
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Wählen Sie die Optionen aus, indem Sie % vor der Option entfernen  
-% Dokumentation des KOMA-Script-Packets: scrguide
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Optionen zum Layout des Buchs                                     %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \documentclass[a4paper,
-%a5paper,							% alle weiteren Papierformat einstellbar
-%landscape,						% Querformat
-%10pt,								% Schriftgröße (12pt, 11pt (Standard))
-%BCOR1cm,							% Bindekorrektur, bspw. 1 cm
-%DIVcalc,							% führt die Satzspiegelberechnung neu aus
-%											  s. scrguide 2.4
-%oneside,							% einseitiges Layout
-%twocolumn,						% zweispaltiger Satz
-%twoside
-openany,							% Kapitel können auch auf linken Seiten beginnen
-%halfparskip*,				% Absatzformatierung s. scrguide 3.1
-%headsepline,					% Trennline zum Seitenkopf	
-%footsepline,					% Trennline zum Seitenfuß
-%notitlepage,					% in-page-Titel, keine eigene Titelseite
-%chapterprefix,				% vor Kapitelüberschrift wird "Kapitel Nummer" gesetzt
-%appendixprefix,				% Anhang wird "Anhang" vor die Überschrift gesetzt 
-%normalheadings,			% Überschriften etwas kleiner (smallheadings)
-%idxtotoc,						% Index im Inhaltsverzeichnis
-%liststotoc,					% Abb.- und Tab.verzeichnis im Inhalt
-%bibtotoc,						% Literaturverzeichnis im Inhalt
-%leqno,								% Nummerierung von Gleichungen links
-%fleqn,								% Ausgabe von Gleichungen linksbündig
-%draft								% überlangen Zeilen in Ausgabe gekennzeichnet
-	toc=chapterentrywithdots,
-	totoc= listof,
-	listof = entryprefix
+	%a5paper,							% alle weiteren Papierformat einstellbar
+	%landscape,						% Querformat
+	%10pt,								% Schriftgröße (12pt, 11pt (Standard))
+	%BCOR1cm,							% Bindekorrektur, bspw. 1 cm
+	%DIVcalc,							% führt die Satzspiegelberechnung neu aus
+	%											  s. scrguide 2.4
+	%oneside,							% einseitiges Layout
+	%twocolumn,						% zweispaltiger Satz
+	%twoside
+	openany,							% Kapitel können auch auf linken Seiten beginnen
+	%halfparskip*,				% Absatzformatierung s. scrguide 3.1
+	%headsepline,					% Trennline zum Seitenkopf	
+	%footsepline,					% Trennline zum Seitenfuß
+	%notitlepage,					% in-page-Titel, keine eigene Titelseite
+	%chapterprefix,				% vor Kapitelüberschrift wird "Kapitel Nummer" gesetzt
+	%appendixprefix,				% Anhang wird "Anhang" vor die Überschrift gesetzt 
+	%normalheadings,			% Überschriften etwas kleiner (smallheadings)
+	headings = normal,
+	%idxtotoc,						% Index im Inhaltsverzeichnis
+	%liststotoc,					% Abb.- und Tab.verzeichnis im Inhalt
+	%bibtotoc,						% Literaturverzeichnis im Inhalt
+	%leqno,								% Nummerierung von Gleichungen links
+	%fleqn,								% Ausgabe von Gleichungen linksbündig
+	%draft								% überlangen Zeilen in Ausgabe gekennzeichnet
+	toc  	 = chapterentrywithdots,
+	listof = totoc,
+	listof = entryprefix,
+	bibliography = totoc	% Literaturverzeichnis im Inhaltsverzeichnis aufführen
 ]
 {scrbook}
-
-%\pagestyle{empty}		% keine Kopf und Fußzeile (k. Seitenzahl)
-%\pagestyle{headings}	% lebender Kolumnentitel  
 
 %% Deutsche Anpassungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[utf8]{inputenc}
@@ -46,7 +36,6 @@ openany,							% Kapitel können auch auf linken Seiten beginnen
 \usepackage[ngerman]{babel}
 
 \usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm, showframe]{geometry}
-
 %% Falls die automatische Worttrennung in Wörtern mit Umlauten
 %% nicht funktionieren sollte oder der Text pixelig aussieht:
 %% ==> Installieren Sie die cm-super Fonts (z.B. mit dem mikTeX Package Manager).
@@ -57,6 +46,7 @@ openany,							% Kapitel können auch auf linken Seiten beginnen
 \usepackage{caption}
 \DeclareCaptionLabelFormat{underline}{\underline{#1~#2:}}
 \captionsetup{labelformat=underline,format=hang, labelsep=space,labelfont=bf, position=top}
+
 \newcommand\entrywithprefixformat[1]{%
 	\def\autodot{:}%
 	\bfseries\underline{#1}%
@@ -66,6 +56,7 @@ openany,							% Kapitel können auch auf linken Seiten beginnen
 	entrynumberformat=\entrywithprefixformat,
 	dynnumwidth
 ]{default}{table}
+
 \DeclareTOCStyleEntry[
 	entrynumberformat=\entrywithprefixformat,
 	dynnumwidth
@@ -86,11 +77,31 @@ openany,							% Kapitel können auch auf linken Seiten beginnen
 %% können Sie u.a. folgende Grafikformate verwenden:
 %%   .eps  .ps  .bmp  .pict  .pntg
 
-
 %% Bibliographiestil %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%\usepackage{natbib}
+\usepackage[
+	backend = biber
+	, natbib	= true
+	, bibwarn = true
+	, backref = true
+	, bibencoding = utf8
+	, style = alphabetic
+	%, sortlocale = de_DE
+	, maxbibnames = 99
+	, date = long
+	, abbreviate = false
+	%, language = ngerman
+	%, refsection = section % benutze automatisch Kapitel als Biobliographie-Abschnitte...
+	%sorting = ynt
+%   %isbn	= true,		%default ist true
+%   %url	= true,		%default ist true
+%   %doi	= true,		%default ist true
+]{biblatex}
+\addbibresource{Literatur.bib}
+\usepackage{csquotes}
 
 \begin{document}
+%% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Ihr Buch                                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -138,9 +149,7 @@ Der Vorspann endet für scrbook, wenn durch \verb#\mainmatter# der Hauptteil beg
 Dieses Template dient hauptsäclich dafür, mir ein Template für die Abschlussarbeit vorzubereiten. Dabei werden soviele Package wie nötig, aber so wenige wie Möglich verwendet.
 
 \mainmatter						% Hauptteil
-%\setpartpreamble[Position][Breite]{Text}
-\setpartpreamble[u, r][6cm]{Dies ist ein Beispiel für eine Part-Präambel.}
-\part[]{Hauptteil}
+
 \chapter{Gliederung}
 
 In den report- und book-Klassen steht, im Vergleich zu den article-Klassen als zusätzliche Gliederungseinheit \verb#\chapter[Kurzform]{Langform}# zur Verfügung. 
@@ -165,6 +174,7 @@ Kapitel beginnen in der Regel in Büchern auf einer ungeraden, d.\,h. rechten Se
 		Inhalt & dieser & Tabelle & unbeachtet.\\\hline
 	\end{tabular}
 \end{table}
+
 	\section{Abbildungsabschnit}
 	\label{sec:Abbildungsabschnit}
 
@@ -208,5 +218,12 @@ Viel Spaß! Für Rückfragen, die diese Vorlage betreffen, stehe ich Ihnen gern 
 %\setbibpreamble{Präambel}		% Text vor dem Verzeichnis
 %\bibliographystyle{dinat}
 %\bibliography{bibliographie}	% Sie benötigen einen *.bib-Datei
-
+%% Bibliographie%%%%%%%%%%%%%%%%%%%%%%%%%%
+\nocite{*}
+%\printbibliography
+\printbibheading[title={Quellenverzeichnis}]
+%\printbibliography[type = thesis, heading	= subbibliography, title = {Dissertation}]
+\printbibliography[type = book, heading	= subbibliography, title = {Bücher}]
+%\printbibliography[type = inbook, heading	= subbibliography, title = {Buchkapitel}]
+%\printbibliography[type = article, heading	= subbibliography, title = {Artikel}]
 \end{document}
