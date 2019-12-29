@@ -110,6 +110,15 @@
 \renewcommand*\chapterpagestyle{scrheadings}
 %Quelle: https://texwelt.de/fragen/10289/wie-andere-ich-die-abstande-uberunter-section-subsection-subsubsection
 \RedeclareSectionCommand[afterindent=false,beforeskip=-\topskip, afterskip=2pt]{chapter}
+\RedeclareSectionCommand[
+  beforeskip=-1\baselineskip,
+  afterskip=.5\baselineskip]{section}
+\RedeclareSectionCommand[
+  beforeskip=-.75\baselineskip,
+  afterskip=.5\baselineskip]{subsection}
+\RedeclareSectionCommand[
+  beforeskip=-.5\baselineskip,
+  afterskip=.25\baselineskip]{subsubsection}
 
 \begin{document}
 %% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -216,10 +225,7 @@ Für ein einleitendes Zitat, ein sog. Diktum bietet das KOMA-Script die Anweisun
 \addchap{Anhang}
 \pagenumbering{gobble}
 \clearpairofpagestyles
-<<<<<<< HEAD
-=======
 \KOMAoptions{footsepline=false, headsepline=false} 
->>>>>>> Fuß-und-Kopfzeile
 \chapter{Schluss}
 %\KOMAoptions{appendixprefix=false}
 
