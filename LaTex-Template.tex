@@ -31,7 +31,9 @@ openany,							% Kapitel können auch auf linken Seiten beginnen
 %leqno,								% Nummerierung von Gleichungen links
 %fleqn,								% Ausgabe von Gleichungen linksbündig
 %draft								% überlangen Zeilen in Ausgabe gekennzeichnet
-toc=chapterentrywithdots
+	toc=chapterentrywithdots,
+	totoc= listof,
+	listof = entryprefix
 ]
 {scrbook}
 
@@ -55,7 +57,19 @@ toc=chapterentrywithdots
 \usepackage{caption}
 \DeclareCaptionLabelFormat{underline}{\underline{#1~#2:}}
 \captionsetup{labelformat=underline,format=hang, labelsep=space,labelfont=bf, position=top}
+\newcommand\entrywithprefixformat[1]{%
+	\def\autodot{:}%
+	\bfseries\underline{#1}%
+}
 
+\DeclareTOCStyleEntry[
+			entrynumberformat=\entrywithprefixformat,
+			dynnumwidth
+]{default}{table}
+\DeclareTOCStyleEntry[
+	entrynumberformat=\entrywithprefixformat,
+	dynnumwidth
+]{default}{figure}
 %% Packages für Grafiken & Abbildungen %%%%%%%%%%%%%%%%%%%%%%
 \usepackage{graphicx} %%Zum Laden von Grafiken
 %\usepackage{subfig} %%Teilabbildungen in einer Abbildung
@@ -184,6 +198,10 @@ Für den Schluss ist zu überlegen, wie man den Anhang formatiert haben möchte:
 
 Viel Spaß! Für Rückfragen, die diese Vorlage betreffen, stehe ich Ihnen gern in der Mailingliste von TXC zur Verfügung. Ansonsten sind die Dokumente \texttt{lshort}, \texttt{l2tabu}, die \texttt{FAQ der Newsgroup de.text.tex} und natürlich der \texttt{scrguide} immer sehr hilfreich.
 
+
+%% Erzeugung von Verzeichnissen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\listoffigures				% Abbildungsverzeichnis
+\listoftables				% Tabellenverzeichnis
 %\backmatter					% Nachspann 
 
 %% Bibliographie unter Verwendung von dinnat %%%%%%%%%%%%%%%%%%%%%%%%%%
