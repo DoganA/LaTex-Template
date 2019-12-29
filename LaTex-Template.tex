@@ -34,8 +34,6 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
-\usepackage[headsepline=1pt,footsepline=1pt]{scrlayer-scrpage}
-\clearpairofpagestyles% Zurücksetzen der Kopf- und Fußzeile
 \usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm]{geometry}
 %% Falls die automatische Worttrennung in Wörtern mit Umlauten
 %% nicht funktionieren sollte oder der Text pixelig aussieht:
@@ -100,11 +98,17 @@
 \addbibresource{Literatur.bib}
 \usepackage{csquotes}
 
+
+
+\usepackage[headsepline=1pt,footsepline=1pt]{scrlayer-scrpage}
+\clearpairofpagestyles% Zurücksetzen der Kopf- und Fußzeile
 \pagestyle{scrheadings}
 %\clearscrheadfoot
 \ihead[\headmark]{\headmark}
 \automark[chapter]{chapter}
 \ofoot[Seite~$\vert$~\pagemark]{Seite~$\vert$~\pagemark}
+
+\renewcommand*\chapterpagestyle{scrheadings}
 
 \begin{document}
 
@@ -210,7 +214,8 @@ Für ein einleitendes Zitat, ein sog. Diktum bietet das KOMA-Script die Anweisun
 \appendix							% Beginn des Anhangs
 \addchap{Anhang}
 \pagenumbering{gobble}
-\clearscrheadfoot
+\clearpairofpagestyles
+\KOMAoptions{footsepline=false, headsepline=false} 
 \chapter{Schluss}
 %\KOMAoptions{appendixprefix=false}
 
