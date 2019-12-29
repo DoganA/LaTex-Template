@@ -53,11 +53,19 @@
 	\bfseries\underline{#1}%
 }
 
+\newcaptionname{ngerman}{\listoflolentryname}{\lstlistingname}
+
+\DeclareTOCStyleEntry[
+  level=1,
+  indent=1.5em,
+  numwidth=2.3em,
+  entrynumberformat=\entrywithprefixformat,
+  dynnumwidth
+]{default}{lstlisting}
 \DeclareTOCStyleEntry[
 	entrynumberformat=\entrywithprefixformat,
 	dynnumwidth
 ]{default}{table}
-
 \DeclareTOCStyleEntry[
 	entrynumberformat=\entrywithprefixformat,
 	dynnumwidth
@@ -78,6 +86,83 @@
 %% können Sie u.a. folgende Grafikformate verwenden:
 %%   .eps  .ps  .bmp  .pict  .pntg
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OPTIONEN FÜR Quellcode
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{color}
+    \definecolor{lightgray}{rgb}{0.95, 0.95, 0.95}
+    \definecolor{darkgray}{rgb}{0.4, 0.4, 0.4}
+    \definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+    \definecolor{ocherCode}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+    \definecolor{blueCode}{rgb}{0, 0, 0.93} % #0000EE -> rgb(0, 0, 238)
+    \definecolor{greenCode}{rgb}{0, 0.6, 0} % #009900 -> rgb(0, 153, 0) 
+\usepackage{upquote}
+\usepackage{scrhack}
+\usepackage{listings}
+%\makeatletter
+\lstset{%
+   % Basic design
+   backgroundcolor=\color{lightgray},
+   basicstyle={\small\ttfamily},   
+   frame=l,
+   % Line numbers
+   xleftmargin={0.75cm},
+   numbers=left,
+	numberstyle=\tiny,
+   stepnumber=1,
+   firstnumber=1,
+   numberfirstline=true,
+   % Code design
+   identifierstyle=\color{black},
+   keywordstyle=\color{blue}\bfseries,
+   ndkeywordstyle=\color{greenCode}\bfseries,
+   stringstyle=\color{ocherCode}\ttfamily,
+   commentstyle=\color{darkgray}\ttfamily,
+   % Code
+   %language={HTML5},
+   tabsize=2,
+   showtabs=false,
+   showspaces=false,
+   showstringspaces=false,
+   extendedchars=true,
+   breaklines=true,
+	breakautoindent=true,
+	%breakatwhitespace=true,
+}
+% enable german umlauts in listings
+\lstset{
+  literate={ö}{{\"o}}1
+           {Ö}{{\"O}}1
+           {ä}{{\"a}}1
+           {Ä}{{\"A}}1
+           {ü}{{\"u}}1
+           {Ü}{{\"U}}1
+           {ß}{{\ss}}1
+}
+\lstdefinelanguage{HTML5}{
+    sensitive=true,
+    keywords={%
+    % JavaScript
+    typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break,
+    % HTML
+    html, title, meta, style, head, body, script, canvas,
+    % CSS
+    border:, transform:, -moz-transform:, transition-duration:, transition-property:,
+    transition-timing-function:
+    },
+    % http://texblog.org/tag/otherkeywords/
+    otherkeywords={<, >, \/},   
+    ndkeywords={class, export, boolean, throw, implements, import, this},   
+    comment=[l]{//},
+    % morecomment=[s][keywordstyle]{<}{>},  
+    morecomment=[s]{/*}{*/},
+    morecomment=[s]{<!}{>},
+    morestring=[b]',
+    morestring=[b]",    
+    alsoletter={-},
+    alsodigit={:}
+}
 %% Bibliographiestil %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[
 	backend = biber
@@ -100,6 +185,11 @@
 \addbibresource{Literatur.bib}
 \usepackage{csquotes}
 
+
+
+
+
+
 \usepackage[headsepline=1pt,footsepline=1pt]{scrlayer-scrpage}
 \clearpairofpagestyles% Zurücksetzen der Kopf- und Fußzeile
 \pagestyle{scrheadings}
@@ -121,9 +211,15 @@
   beforeskip=-.5\baselineskip,
   afterskip=.25\baselineskip]{subsubsection}
 
-\begin{document}
-%% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Quellenformatierung für Tabellen und Grafiken
+\newcommand*{\quelle}[1]{
+	\centerline{\footnotesize(\underline{Quelle:} #1)}
+}
+
+%% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Ihr Buch                                                          %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
