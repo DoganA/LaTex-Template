@@ -34,7 +34,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
-
+\usepackage{scrlayer-scrpage}
 \usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm, showframe]{geometry}
 %% Falls die automatische Worttrennung in Wörtern mit Umlauten
 %% nicht funktionieren sollte oder der Text pixelig aussieht:
@@ -99,7 +99,17 @@
 \addbibresource{Literatur.bib}
 \usepackage{csquotes}
 
+\pagestyle{scrheadings}
+%\clearscrheadfoot
+\ihead[chapter]{chapter}
+\chead[]{}
+\ohead[]{}
+\ifoot[]{}
+\cfoot[]{}
+\ofoot[Seite~$\vert$~\pagemark]{Seite~$\vert$~\pagemark}
+
 \begin{document}
+
 %% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
