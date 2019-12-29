@@ -108,6 +108,8 @@
 \ofoot[Seite~$\vert$~\pagemark]{Seite~$\vert$~\pagemark}
 
 \renewcommand*\chapterpagestyle{scrheadings}
+%Quelle: https://texwelt.de/fragen/10289/wie-andere-ich-die-abstande-uberunter-section-subsection-subsubsection
+\RedeclareSectionCommand[afterindent=false,beforeskip=-\topskip, afterskip=2pt]{chapter}
 
 \begin{document}
 %% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
