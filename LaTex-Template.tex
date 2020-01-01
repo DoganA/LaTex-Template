@@ -37,6 +37,12 @@
 \usepackage[left=25mm, right=25mm, top=25mm, bottom=25mm, showframe]{geometry}
 \usepackage[scaled]{uarial}
 \renewcommand\familydefault{\sfdefault}
+%Verhindern von widow  und orphan, entweder durch
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+%oder
+\usepackage[all]{nowidow}	
 %% Falls die automatische Worttrennung in Wörtern mit Umlauten
 %% nicht funktionieren sollte oder der Text pixelig aussieht:
 %% ==> Installieren Sie die cm-super Fonts (z.B. mit dem mikTeX Package Manager).
@@ -130,6 +136,8 @@
 	breakautoindent=true,
 	%breakatwhitespace=true,
 }
+
+
 % enable german umlauts in listings
 \lstset{
   literate={ö}{{\"o}}1
@@ -170,7 +178,7 @@
 	, bibwarn = true
 	, backref = true
 	, bibencoding = utf8
-	, style = alphabetic
+	, style = alphabetic,
 	%, sortlocale = de_DE
 	, maxbibnames = 99
 	, date = long
@@ -184,11 +192,6 @@
 ]{biblatex}
 \addbibresource{Literatur.bib}
 \usepackage{csquotes}
-
-
-
-
-
 
 \usepackage[headsepline=1pt,footsepline=1pt]{scrlayer-scrpage}
 \clearpairofpagestyles% Zurücksetzen der Kopf- und Fußzeile
@@ -218,6 +221,55 @@
 	\centerline{\footnotesize(\underline{Quelle:} #1)}
 }
 
+
+\usepackage{tikz}
+\usetikzlibrary{tikzmark}
+\usetikzlibrary{calc}
+
+\newcounter{zebrabibentry}
+\newcounter{zebrabibbibenv}
+
+\defbibenvironment{bibliography}
+  {\list
+     {\stepcounter{zebrabibentry}%
+      \zebrabibstart{zebrabib-%
+        \the\value{zebrabibbibenv}-%
+        \the\value{zebrabibentry}}%
+      \printtext[labelalphawidth]{%
+        \printfield{labelprefix}%
+        \printfield{labelalpha}
+				\printfield{extraalpha}}}
+     {\stepcounter{zebrabibbibenv}%
+      \setcounter{zebrabibentry}{0}%
+      \setlength{\labelwidth}{\labelalphawidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+\newcommand*{\zebrabibstart}[2][]{%
+  \tikz[remember picture,overlay]
+  \draw[line width=1pt,rectangle,
+    draw=\ifodd\value{zebrabibentry}white\else blue!20\fi,
+    fill=\ifodd\value{zebrabibentry}white\else blue!10\fi,]
+    let \p1=(pic cs:#2) in
+    ({0pt,10pt}) node [anchor=base] (#2){} rectangle  (\columnwidth+2pt,\y1-\itemsep)
+    ;%
+}
+
+\newcommand\zebrabibend[2][]{%
+  \tikz[remember picture with id=#2] #1;}
+
+\renewbibmacro{finentry}{%
+  \finentry
+  \zebrabibend{zebrabib-%
+    \the\value{zebrabibbibenv}-%
+    \the\value{zebrabibentry}}}
+		
 %% Der Text %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -235,7 +287,7 @@
 %\titlehead{Titelkopf}
 %\subject{Typisierung}
 \title{Der Name Ihrer Arbeit}
-\author{Ihr Name}\pagestyle{scrheadings}
+\author{Ihr Name}
 %\and{Der Name des Co-Autoren}
 %\thanks{Fußnote}			% entspr. \footnote im Fließtext
 %\date{}							% falls anderes, als das aktuelle gewünscht
