@@ -1,0 +1,58 @@
+%Verhindern von widow  und orphan, entweder durch
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+%oder
+\usepackage[all]{nowidow}
+
+%% caption Anpassungen %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{caption}
+\DeclareCaptionLabelFormat{underline}{\underline{#1~#2:}}
+\captionsetup{labelformat=underline,format=hang, labelsep=space,labelfont=bf, position=top}
+
+\newcommand\entrywithprefixformat[1]{%
+	\def\autodot{:}%
+	\bfseries\underline{#1}%
+}
+
+\newcaptionname{ngerman}{\listoflolentryname}{\lstlistingname}
+
+\DeclareTOCStyleEntry[
+  level=1,
+  indent=1.5em,
+  numwidth=2.3em,
+  entrynumberformat=\entrywithprefixformat,
+  dynnumwidth
+]{default}{lstlisting}
+\DeclareTOCStyleEntry[
+	entrynumberformat=\entrywithprefixformat,
+	dynnumwidth
+]{default}{table}
+\DeclareTOCStyleEntry[
+	entrynumberformat=\entrywithprefixformat,
+	dynnumwidth
+]{default}{figure}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\usepackage{scrhack}
